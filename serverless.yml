@@ -35,14 +35,14 @@ custom:
     packager: 'yarn'   # Packager that will be used to package your external modules
     excludeFiles: src/**/*.test.js # Provide a glob for files to ignore
 
-  serverless-offline-sqs:
-    autoCreate: true                 # create queue if not exists
-    apiVersion: '2012-11-05'
-    endpoint: http://localhost:9324
-    region: eu-west-1
-    accessKeyId: root
-    secretAccessKey: root
-    skipCacheInvalidation: false
+  # serverless-offline-sqs:
+  #   autoCreate: true                 # create queue if not exists
+  #   apiVersion: '2012-11-05'
+  #   endpoint: http://localhost:9324
+  #   region: eu-west-1
+  #   accessKeyId: root
+  #   secretAccessKey: root
+  #   skipCacheInvalidation: false
 
 provider:
   name: aws
@@ -81,24 +81,18 @@ provider:
 #    - exclude-me.js
 #    - exclude-me-dir/**
 
-functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: /
-          method: get
+functions: ${file(./functions.yml)}
 
-  email-sender:
-    handler: workers/email-sender/sender.handler
-    events:
-      - sqs: arn:aws:sqs:us-east-1:063061419719:worker-email-sender
-      - sqs:
-          queueName: worker-email-sender
-          arn:
-            Fn:GetAtt:
-              - worker-email-sender
-              - Arn
+  # email-sender:
+  #   handler: workers/email-sender/sender.handler
+  #   events:
+  #     - sqs: arn:aws:sqs:us-east-1:063061419719:worker-email-sender
+  #     - sqs:
+  #         queueName: worker-email-sender
+  #         arn:
+  #           Fn:GetAtt:
+  #             - worker-email-sender
+  #             - Arn
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
