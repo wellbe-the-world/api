@@ -4,3 +4,10 @@ hello:
     - http:
         path: /
         method: get
+
+create-user:
+  handler: ./services/users/create.handler
+  events:
+    - http:
+        path: /users
+        method: post
