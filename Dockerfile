@@ -1,11 +1,12 @@
 FROM node:10.16.3-alpine
 
-WORKDIR /TalkToMe/api
+WORKDIR /app
 
-COPY package.json ./
+COPY . /app
+
 RUN npm i -g yarn
-RUN yarn
-COPY . .
+
 EXPOSE 4001
+
 CMD [ "yarn", "start" ]
  

@@ -6,16 +6,15 @@ services:
     image: mongo
     container_name: mongodb-node
     restart: on-failure
-    ports: 
-      - 27017:27017 
-    network_mode: 'host'
-  
-  api: 
+    ports:
+      - 27017:27017
+    network_mode: 'bridge'
+
+  api:
     build: .
     command: yarn start
-    ports: 
+    ports:
       - 4001:4001
     volumes:
       - ./:/app
-    network_mode: 'host'
-  
+    network_mode: 'bridge'
