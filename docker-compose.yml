@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongodb-node
+    restart: always
+    ports: 
+      - 27017:27017
+  
+  api: 
+    build: .
+    command: yarn start
+    ports: 
+      - "4001:4001"
+  
