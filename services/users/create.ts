@@ -13,7 +13,7 @@ export const handler = async (event, context) => {
         // context,
       },
       null,
-      8
+      2
     ),
   };
 };

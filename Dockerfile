@@ -1,6 +1,12 @@
 FROM node:10.16.3-alpine
 
+WORKDIR /app
+
 COPY . /app
+
 RUN npm i -g yarn
-CMD [ "yarn start" ]
+
 EXPOSE 4001
+
+CMD [ "yarn", "start" ]
+ 

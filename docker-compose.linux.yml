@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongodb-node
+    restart: on-failure
+    ports: 
+      - 27017:27017 
+    network_mode: 'host'
+  
+  api: 
+    build: .
+    command: yarn start
+    ports: 
+      - 4001:4001
+    volumes:
+      - ./:/app
+    network_mode: 'host'
+  
